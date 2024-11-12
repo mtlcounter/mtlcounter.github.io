@@ -1,4 +1,4 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,220 +8,107 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Update Mixpanel script source to use official CDN -->
-    <script src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"></script>
-    
-    <script>
-        // Initialize Mixpanel
-        mixpanel.init("90ede36294e6b5ddf54e55c0cae7fc26", { debug: true });
+    <!-- Mixpanel SDK Installation -->
+    <script type="text/javascript">
+        (function (f, b) {
+            if (!b.__SV) {
+                var e, g, i, h;
+                window.mixpanel = b;
+                b._i = [];
+                b.init = function (e, f, c) {
+                    function g(a, d) {
+                        var b = d.split(".");
+                        2 == b.length && ((a = a[b[0]]), (d = b[1]));
+                        a[d] = function () {
+                            a.push([d].concat(Array.prototype.slice.call(arguments, 0)));
+                        };
+                    }
+                    var a = b;
+                    "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel");
+                    a.people = a.people || [];
+                    a.toString = function (a) {
+                        var d = "mixpanel";
+                        "mixpanel" !== c && (d += "." + c);
+                        a || (d += " (stub)");
+                        return d;
+                    };
+                    a.people.toString = function () {
+                        return a.toString(1) + ".people (stub)";
+                    };
+                    i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+                    for (h = 0; h < i.length; h++) g(a, i[h]);
+                    var j = "set set_once union unset remove delete".split(" ");
+                    a.get_group = function () {
+                        function b(c) {
+                            d[c] = function () {
+                                call2_args = arguments;
+                                call2 = [c].concat(Array.prototype.slice.call(call2_args, 0));
+                                a.push([e, call2]);
+                            };
+                        }
+                        for (var d = {}, e = ["get_group"].concat(Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]);
+                        return d;
+                    };
+                    b._i.push([e, f, c]);
+                };
+                b.__SV = 1.2;
+                e = f.createElement("script");
+                e.type = "text/javascript";
+                e.async = !0;
+                e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+                g = f.getElementsByTagName("script")[0];
+                g.parentNode.insertBefore(e, g);
+            }
+        })(document, window.mixpanel || []);
+        
+        // Initialize Mixpanel with your project token
+        mixpanel.init("90ede36294e6b5ddf54e55c0cae7fc26", {
+            debug: true,
+            track_pageview: true,
+            persistence: "localStorage",
+        });
 
-        // Track a page view event
+        // Example: Track a page view event
         mixpanel.track("Page Viewed", {
             page: "Portfolio",
             title: document.title
         });
-
-        // Example: Track clicks on social links
-        document.addEventListener("DOMContentLoaded", function() {
-            const socialLinks = document.querySelectorAll(".social-links a");
-            socialLinks.forEach(link => {
-                link.addEventListener("click", function() {
-                    mixpanel.track("Social Link Clicked", {
-                        platform: link.textContent,
-                        url: link.href
-                    });
-                });
-            });
-        });
     </script>
+    
     <style>
-      :root {
-        --primary-color: #2C3E50;
-        --secondary-color: #607D8B;
-        --accent-color: #3498DB;
-        --background-color: #F5F6F7;
-        --container-background: #FFFFFF;
-        --hover-color: #2980B9;
-        --soft-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: 'Inter', sans-serif;
-        line-height: 1.6;
-        color: var(--primary-color);
-        background-color: var(--background-color);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 2rem;
-      }
-
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 3rem;
-        background-color: var(--container-background);
-        border-radius: 12px;
-        box-shadow: var(--soft-shadow);
-        animation: fadeIn 0.5s ease-in;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .profile-image {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-bottom: 2rem;
-        object-fit: cover;
-        filter: grayscale(20%);
-        transition: all 0.3s ease;
-        box-shadow: var(--soft-shadow);
-      }
-
-      .profile-image:hover {
-        filter: grayscale(0%);
-        transform: scale(1.02);
-      }
-
-      h1 {
-        font-size: 2.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: var(--primary-color);
-        letter-spacing: -0.02em;
-      }
-
-      .tagline {
-        font-size: 1.2rem;
-        color: var(--secondary-color);
-        margin-bottom: 2.5rem;
-        font-weight: 400;
-      }
-
-      .section {
-        margin-bottom: 2.5rem;
-      }
-
-      .section-title {
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--secondary-color);
-        margin-bottom: 1rem;
-        font-weight: 500;
-      }
-
-      .experience-list {
-        list-style: none;
-      }
-
-      .experience-item {
-        margin-bottom: 1rem;
-        font-size: 1.1rem;
-        padding: 0.5rem 0;
-      }
-
-      .experience-item a {
-        color: var(--accent-color);
-        text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: all 0.3s ease;
-        font-weight: 500;
-      }
-
-      .experience-item a:hover {
-        color: var(--hover-color);
-        border-color: var(--hover-color);
-      }
-
-      .social-links {
-        display: flex;
-        gap: 1.5rem;
-        margin-top: 2.5rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-      }
-
-      .social-links a {
-        color: var(--secondary-color);
-        text-decoration: none;
-        font-size: 1rem;
-        transition: color 0.3s ease;
-        padding: 0.5rem 0;
-      }
-
-      .social-links a:hover {
-        color: var(--accent-color);
-      }
-
-      @media (max-width: 768px) {
-        body {
-          padding: 1rem;
-        }
-
-        .container {
-          padding: 2rem;
-        }
-
-        h1 {
-          font-size: 2rem;
-        }
-
-        .tagline {
-          font-size: 1.1rem;
-        }
-
-        .experience-item {
-          font-size: 1rem;
-        }
-      }
+        /* Your existing CSS styles here */
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <img src="/api/placeholder/150/150" alt="Profile" class="profile-image">
-      <h1>Your Name</h1>
-      <p class="tagline">Software Engineer & Product Designer</p>
-      <div class="section">
-        <h2 class="section-title">Currently</h2>
-        <ul class="experience-list">
-          <li class="experience-item"> Senior Engineer at <a href="#" target="_blank">Company Name</a>
-          </li>
-        </ul>
-      </div>
-      <div class="section">
-        <h2 class="section-title">Previously</h2>
-        <ul class="experience-list">
-          <li class="experience-item">Lead Developer at <a href="#" target="_blank">Previous Company</a>
-          </li>
-          <li class="experience-item">Frontend Engineer at <a href="#" target="_blank">Another Company</a>
-          </li>
-          <li class="experience-item">UX Designer at <a href="#" target="_blank">Design Studio</a>
-          </li>
-        </ul>
-      </div>
-      <div class="social-links">
-        <a href="https://github.com" target="_blank">GitHub</a>
-        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-        <a href="https://twitter.com" target="_blank">Twitter</a>
-      </div>
+        <img src="/api/placeholder/150/150" alt="Profile" class="profile-image">
+        
+        <h1>Your Name</h1>
+        <p class="tagline">Software Engineer & Product Designer</p>
+        
+        <div class="section">
+            <h2 class="section-title">Currently</h2>
+            <ul class="experience-list">
+                <li class="experience-item">
+                    Senior Engineer at <a href="#" target="_blank">Company Name</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Previously</h2>
+            <ul class="experience-list">
+                <li class="experience-item">Lead Developer at <a href="#" target="_blank">Previous Company</a></li>
+                <li class="experience-item">Frontend Engineer at <a href="#" target="_blank">Another Company</a></li>
+                <li class="experience-item">UX Designer at <a href="#" target="_blank">Design Studio</a></li>
+            </ul>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+        </div>
     </div>
-  </body>
+</body>
 </html>
