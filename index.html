@@ -76,8 +76,158 @@
     </script>
     
     <style>
-        /* Your existing CSS styles here */
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #607D8B;
+            --accent-color: #3498DB;
+            --background-color: #F5F6F7;
+            --container-background: #FFFFFF;
+            --hover-color: #2980B9;
+            --soft-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-color);
+            background-color: var(--background-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem;
+            background-color: var(--container-background);
+            border-radius: 12px;
+            box-shadow: var(--soft-shadow);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: all 0.3s ease;
+            box-shadow: var(--soft-shadow);
+        }
+
+        .profile-image:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .experience-list {
+            list-style: none;
+        }
+
+        .experience-item {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+        }
+
+        .experience-item a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .experience-item a:hover {
+            color: var(--hover-color);
+            border-color: var(--hover-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .social-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .experience-item {
+                font-size: 1rem;
+            }
+        }
     </style>
+
 </head>
 <body>
     <div class="container">
