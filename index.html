@@ -1,35 +1,38 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixpanel/2.47.0/mixpanel.min.js"></script>
+    
+    <!-- Update Mixpanel script source to use official CDN -->
+    <script src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"></script>
+    
     <script>
-      // Initialize Mixpanel
-      mixpanel.init("90ede36294e6b5ddf54e55c0cae7fc26", {
-        debug: true
-      });
-      // Track a page view event
-      mixpanel.track("Page Viewed", {
-        page: "Portfolio",
-        title: document.title
-      });
-      // Example: Track clicks on social links
-      document.addEventListener("DOMContentLoaded", function() {
-        const socialLinks = document.querySelectorAll(".social-links a");
-        socialLinks.forEach(link => {
-          link.addEventListener("click", function() {
-            mixpanel.track("Social Link Clicked", {
-              platform: link.textContent,
-              url: link.href
-            });
-          });
+        // Initialize Mixpanel
+        mixpanel.init("90ede36294e6b5ddf54e55c0cae7fc26", { debug: true });
+
+        // Track a page view event
+        mixpanel.track("Page Viewed", {
+            page: "Portfolio",
+            title: document.title
         });
-      });
+
+        // Example: Track clicks on social links
+        document.addEventListener("DOMContentLoaded", function() {
+            const socialLinks = document.querySelectorAll(".social-links a");
+            socialLinks.forEach(link => {
+                link.addEventListener("click", function() {
+                    mixpanel.track("Social Link Clicked", {
+                        platform: link.textContent,
+                        url: link.href
+                    });
+                });
+            });
+        });
     </script>
     <style>
       :root {
