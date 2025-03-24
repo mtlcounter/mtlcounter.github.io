@@ -3,8 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matt Counter</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Matt Counter | Product Leader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-light: #f7f7f9;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --accent-color: #0056b3;
+            --border-light: #e6e6e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 720px;
+            width: 100%;
+            padding: 48px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .headshot {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-light);
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-weight: 300;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .tagline {
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .bio {
+            font-weight: 300;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .companies {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        .company {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .company:hover {
+            opacity: 1;
+        }
+
+        .company-logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: contain;
+            margin-bottom: 8px;
+            background: white;
+            padding: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .company p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .cta {
+            margin-top: 24px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            margin: 0 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: #003d82;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -12,115 +155,39 @@
         <h1>Matt Counter</h1>
         <p class="tagline">Building products that make a difference.</p>
         
-        <p class="bio">I’m a product leader who thrives at the intersection of technology, business, and customer experience. Over the past decade, I’ve built and scaled digital products across fintech, marketplaces, and mobility, shaping experiences that impact millions. I believe in the power of data-driven decisions, elegant design, and customer-first thinking to drive measurable success.</p>
+        <p class="bio">I'm a product leader who thrives at the intersection of technology, business, and customer experience. Over the past decade, I've built and scaled digital products across fintech, marketplaces, and mobility, shaping experiences that impact millions.</p>
         
-        <h2>Where I've Made an Impact</h2>
         <div class="companies">
             <div class="company">
                 <img src="images/uber_logo.png" alt="Uber" class="company-logo">
-                <p>Uber Carshare - Global mobility innovation</p>
+                <p>Uber Carshare</p>
             </div>
             <div class="company">
                 <img src="images/gumtree_logo.png" alt="Gumtree" class="company-logo">
-                <p>Gumtree - Marketplace evolution</p>
+                <p>Gumtree</p>
             </div>
             <div class="company">
                 <img src="images/volt_logo.png" alt="Volt Bank" class="company-logo">
-                <p>Volt Bank - Disrupting banking</p>
+                <p>Volt Bank</p>
             </div>
             <div class="company">
                 <img src="images/scg_logo.jpg" alt="Scentre Group" class="company-logo">
-                <p>Scentre Group (Westfield) - Digital transformation</p>
+                <p>Scentre Group</p>
             </div>
             <div class="company">
                 <img src="images/iag_logo.png" alt="IAG" class="company-logo">
-                <p>IAG - Self-service innovation</p>
+                <p>IAG</p>
             </div>
             <div class="company">
                 <img src="images/ing_logo.jpg" alt="ING" class="company-logo">
-                <p>ING - Award-winning banking experiences</p>
+                <p>ING</p>
             </div>
         </div>
         
         <div class="cta">
-            <p>Let’s connect and build something great.</p>
-            <p><a href="https://www.linkedin.com/in/mattcounter/" target="_blank" class="button">LinkedIn</a> <a href="mailto:web-hello@mattcounter.com" class="button">Email</a></p>
+            <a href="https://www.linkedin.com/in/mattcounter/" target="_blank" class="button">LinkedIn</a>
+            <a href="mailto:web-hello@mattcounter.com" class="button">Email</a>
         </div>
     </div>
 </body>
 </html>
-
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background: #f4f4f4;
-        color: #222;
-    }
-    .container {
-        text-align: center;
-        max-width: 700px;
-        padding: 40px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
-    }
-    .headshot, .company-logo {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 15px;
-        background: #fff;
-        padding: 5px;
-        border: 2px solid #ddd;
-    }
-    .tagline {
-        font-size: 1.4em;
-        font-weight: 600;
-        color: #444;
-        margin-bottom: 15px;
-    }
-    .bio {
-        font-size: 1.1em;
-        line-height: 1.8;
-        color: #555;
-        margin-bottom: 30px;
-    }
-    .companies {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 25px;
-        margin: 30px 0;
-    }
-    .company {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 140px;
-    }
-    .cta {
-        margin-top: 25px;
-        font-weight: 600;
-        font-size: 1.1em;
-    }
-    .button {
-        display: inline-block;
-        padding: 12px 24px;
-        background: #0073e6;
-        color: #fff;
-        border-radius: 25px;
-        text-decoration: none;
-        margin: 5px;
-        font-weight: 600;
-        transition: background 0.3s ease;
-    }
-    .button:hover {
-        background: #005bb5;
-    }
-</style>
