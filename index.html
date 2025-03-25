@@ -26,6 +26,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -48,17 +49,17 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            object-position: center top; /* This will zoom and center the top of the image */
+            object-position: center top;
             border: 2px solid var(--border-light);
             margin-bottom: 24px;
         }
 
         h1 {
-            font-weight: 200; /* Even lighter weight */
+            font-weight: 200;
             font-size: 2.5rem;
             margin-bottom: 12px;
-            color: #333; /* Softer than pure black */
-            letter-spacing: -1px; /* Slightly tighter letter spacing */
+            color: #333;
+            letter-spacing: -1px;
         }
 
         .tagline {
@@ -115,24 +116,34 @@
         }
 
         .cta {
-            margin-top: 24px;
+            margin-top: 36px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
         }
 
         .button {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 8px 16px;
             background-color: var(--accent-color);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            margin: 0 8px;
+            border-radius: 6px;
+            font-weight: 400;
+            font-size: 0.9rem;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .button:hover {
             background-color: #4b5563;
             transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 24px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: center;
         }
 
         @media (max-width: 600px) {
@@ -147,6 +158,16 @@
 
             .tagline {
                 font-size: 1rem;
+            }
+
+            .cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .button {
+                width: 200px;
+                text-align: center;
             }
         }
     </style>
@@ -190,6 +211,10 @@
             <a href="https://www.linkedin.com/in/mattcounter/" target="_blank" class="button">LinkedIn</a>
             <a href="mailto:web-hello@mattcounter.com" class="button">Email</a>
         </div>
+    </div>
+
+    <div class="footer">
+        © 2025 Matt Counter. All Rights Reserved.
     </div>
 </body>
 </html>
