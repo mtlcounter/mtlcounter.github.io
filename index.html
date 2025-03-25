@@ -26,7 +26,6 @@
             color: var(--text-primary);
             line-height: 1.6;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -119,31 +118,20 @@
             margin-top: 36px;
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 24px;
+            font-weight: 300;
+            font-size: 1rem;
         }
 
-        .button {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 400;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .button:hover {
-            background-color: #4b5563;
-            transform: translateY(-2px);
-        }
-
-        .footer {
-            margin-top: 24px;
-            font-size: 0.75rem;
+        .cta a {
             color: var(--text-secondary);
-            text-align: center;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .cta a:hover {
+            color: #0056b3;
+            text-decoration: underline;
         }
 
         @media (max-width: 600px) {
@@ -163,11 +151,7 @@
             .cta {
                 flex-direction: column;
                 align-items: center;
-            }
-
-            .button {
-                width: 200px;
-                text-align: center;
+                gap: 16px;
             }
         }
     </style>
@@ -208,13 +192,26 @@
         </div>
         
         <div class="cta">
-            <a href="https://www.linkedin.com/in/mattcounter/" target="_blank" class="button">LinkedIn</a>
-            <a href="mailto:web-hello@mattcounter.com" class="button">Email</a>
+            <a href="https://www.linkedin.com/in/mattcounter/" target="_blank">LinkedIn</a>
+            <a href="#" onclick="handleEmailClick(event)">Email</a>
         </div>
     </div>
 
-    <div class="footer">
-        © 2025 Matt Counter. All Rights Reserved.
-    </div>
+<script>
+    function handleEmailClick(e) {
+        e.preventDefault();
+        // Split the email into parts
+        const user = "web-hello";
+        const at = String.fromCharCode(64);
+        const domain = "mattcounter";
+        const dot = ".";
+        const tld = "com";
+        
+        // Assemble the email address and open mailto
+        const emailAddress = user + at + domain + dot + tld;
+        window.location.href = 'mailto:' + emailAddress;
+    }
+</script>
+
 </body>
 </html>
