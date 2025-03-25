@@ -249,9 +249,13 @@
         .contact-links {
             display: flex;
             gap: 24px;
+            align-items: center;
         }
 
-        .cta a {
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-weight: 300;
             font-size: 1rem;
             color: var(--text-secondary);
@@ -259,9 +263,20 @@
             transition: color 0.3s ease;
         }
 
-        .cta a:hover {
+        .contact-links a:hover {
             color: #0056b3;
             text-decoration: underline;
+        }
+
+        .contact-links a svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-secondary);
+            transition: stroke 0.3s ease;
+        }
+
+        .contact-links a:hover svg {
+            stroke: #0056b3;
         }
 
         @media (max-width: 600px) {
@@ -339,8 +354,21 @@
         <div class="cta">
             <p class="contact-prompt">Want to connect? Reach out here</p>
             <div class="contact-links">
-                <a href="https://www.linkedin.com/in/mattcounter/" target="_blank" id="linkedin-link">LinkedIn</a>
-                <a href="#" onclick="handleEmailClick(event)" id="email-link">Email</a>
+                <a href="https://www.linkedin.com/in/mattcounter/" target="_blank" id="linkedin-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="#" onclick="handleEmailClick(event)" id="email-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail">
+                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    Email
+                </a>
             </div>
         </div>
     </div>
