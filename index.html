@@ -115,10 +115,23 @@
             color: var(--text-tertiary);
         }
 
+        .contact-prompt {
+            font-weight: 300;
+            color: var(--text-tertiary);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
         .cta {
-            margin-top: 36px;
+            margin-top: 12px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-links {
+            display: flex;
             gap: 24px;
         }
 
@@ -148,7 +161,7 @@
                 font-size: 1rem;
             }
 
-            .cta {
+            .contact-links {
                 flex-direction: column;
                 align-items: center;
                 gap: 16px;
@@ -191,8 +204,11 @@
         </div>
         
         <div class="cta">
-            <a href="https://www.linkedin.com/in/mattcounter/" target="_blank">LinkedIn</a>
-            <a href="#" onclick="handleEmailClick(event)">Email</a>
+            <p class="contact-prompt">Want to connect? Reach out here</p>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/mattcounter/" target="_blank">LinkedIn</a>
+                <a href="#" onclick="handleEmailClick(event)">Email</a>
+            </div>
         </div>
     </div>
 
