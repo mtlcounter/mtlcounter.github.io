@@ -36,9 +36,7 @@
                     element_text: element.textContent.trim(),
                     element_id: element.id || 'no_id',
                     element_type: element.tagName.toLowerCase(),
-                    page_url: window.location.href,
-                    click_timestamp: new Date().toISOString(),
-                    is_external_link: element.hostname !== window.location.hostname
+                    page_url: window.location.href
                 });
             });
         });
