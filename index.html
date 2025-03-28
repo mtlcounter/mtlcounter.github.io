@@ -329,12 +329,6 @@
             const tld = "com";
             const emailAddress = user + at + domain + dot + tld;
             window.location.href = 'mailto:' + emailAddress;
-
-            // Track email CTA click
-            mixpanel.track('Email CTA Clicked', {
-                'Device Type': detectDeviceType(),
-                'Browser': detectBrowser()
-            });
         }
 
         // Dark Mode Toggle
@@ -349,27 +343,12 @@
                 body.classList.toggle('dark-mode');
                 body.classList.toggle('light-mode');
 
-                // Track mode change in Mixpanel
-                mixpanel.track('Dark Mode Toggle', {
-                    'Mode': body.classList.contains('dark-mode') ? 'Dark' : 'Light',
-                    'Device Type': detectDeviceType(),
-                    'Browser': detectBrowser()
-                });
-
                 // Save preference
                 if (body.classList.contains('dark-mode')) {
                     localStorage.setItem('dark-mode', 'enabled');
                 } else {
                     localStorage.setItem('dark-mode', 'disabled');
                 }
-            });
-
-            // Track LinkedIn CTA click
-            document.getElementById('linkedin-link').addEventListener('click', function() {
-                mixpanel.track('LinkedIn CTA Clicked', {
-                    'Device Type': detectDeviceType(),
-                    'Browser': detectBrowser()
-                });
             });
         });
     </script>
