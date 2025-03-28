@@ -8,102 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋🏼</text></svg>">
     
-   <script type="text/javascript">
-(function(f, b) {
-    // Check if Mixpanel is already loaded to prevent duplicate initialization
-    if (!window.mixpanel) {
-        // Standard Mixpanel loading pattern
-        (function(a,b){
-            if(!b.__SV){
-                var c=window;
-                try{
-                    var d,m,h,
-                    i=c.location,
-                    k=i.hash;
-                    h=function(a,b){
-                        return(m=a.match(RegExp(b+"=([^&]*)"))) ? m[1] : null;
-                    };
-                    k&&h(k,"state")&&(b.__SV=1);
-                }catch(h){}
-                
-                c=document.createElement("script");
-                c.type="text/javascript";
-                c.async=!0;
-                c.src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
-                d=document.getElementsByTagName("script")[0];
-                d.parentNode.insertBefore(c,d);
-            }
-        })(document,window.mixpanel||[]);
-
-        window.mixpanel = window.mixpanel || [];
-    }
-
-    // Device Type Detection
-    function detectDeviceType() {
-        const ua = navigator.userAgent.toLowerCase();
-        if (/android/.test(ua)) return 'Android Mobile';
-        if (/iphone/.test(ua)) return 'iPhone';
-        if (/ipad/.test(ua)) return 'iPad';
-        if (/mobile/.test(ua)) return 'Mobile';
-        return 'Desktop';
-    }
-
-    // Browser Detection
-    function detectBrowser() {
-        const ua = navigator.userAgent.toLowerCase();
-        if (ua.indexOf('chrome') > -1) return 'Google Chrome';
-        if (ua.indexOf('firefox') > -1) return 'Mozilla Firefox';
-        if (ua.indexOf('safari') > -1) return 'Safari';
-        if (ua.indexOf('opr') > -1) return 'Opera';
-        if (ua.indexOf('trident') > -1) return 'Internet Explorer';
-        if (ua.indexOf('edge') > -1) return 'Microsoft Edge';
-        return 'Unknown Browser';
-    }
-
-    // Ensure safe Mixpanel initialization
-    function initMixpanel() {
-        const MIXPANEL_TOKEN = "90ede36294e6b5ddf54e55c0cae7fc26";
-
-        try {
-            mixpanel.init(MIXPANEL_TOKEN, {
-                persistence: 'localStorage',
-                track_ip_address: true,
-                track_pageview: true,
-                loaded: function(mixpanel) {
-                    // Track initial page view
-                    mixpanel.track('Page View', {
-                        'Device Type': detectDeviceType(),
-                        'Browser': detectBrowser(),
-                        'Page URL': window.location.href
-                    });
-                }
-            });
-        } catch (error) {
-            console.error('Mixpanel initialization failed:', error);
-        }
-    }
-
-    // Wait for Mixpanel library to load
-    function waitForMixpanel(callback, maxAttempts = 10) {
-        let attempts = 0;
-        const checkInterval = setInterval(() => {
-            if (window.mixpanel && window.mixpanel.init) {
-                clearInterval(checkInterval);
-                callback();
-            } else if (attempts++ >= maxAttempts) {
-                clearInterval(checkInterval);
-                console.error('Mixpanel failed to load');
-            }
-        }, 500);
-    }
-
-    // Add event listener for page load
-    document.addEventListener('DOMContentLoaded', function() {
-        waitForMixpanel(initMixpanel);
-    });
-})(document, window);
-</script>
-
+   <!-- Mixpanel SDK Installation -->
+    <script type="text/javascript">
+    (function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);return d};a.people.toString=function(){return a.toString(1)+".people"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.create_group people.set_group people.delete_group groups.add_user groups.remove_user".split(" ");
+    for(h=0;h<i.length;h++)g(a,i[h]);b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+    
+    // Initialize Mixpanel with your project token
+    mixpanel.init('90ede36294e6b5ddf54e55c0cae7fc26');
+    </script>
+    
     <style>
         :root {
             /* Light Mode Colors */
