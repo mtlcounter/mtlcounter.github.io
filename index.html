@@ -9,61 +9,99 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋🏼</text></svg>">
     
    <script type="text/javascript">
-(function(f,b){
-    if(!b.__SV){
-        var e,g,i,h;
-        window.mixpanel=b;
-        b._i=[];
-        b.init=function(e,f,c){
-            // Simplified initialization function
-            var a=b;
-            a._.push([e,f,c]);
-        };
-        b._=[];
-        b.init(e,f,c);
-    }
-})(document,window.mixpanel||[]);
-
-// Device Type Detection
-function detectDeviceType() {
-    const ua = navigator.userAgent.toLowerCase();
-    if (/android/.test(ua)) return 'Android Mobile';
-    if (/iphone/.test(ua)) return 'iPhone';
-    if (/ipad/.test(ua)) return 'iPad';
-    if (/mobile/.test(ua)) return 'Mobile';
-    return 'Desktop';
-}
-
-// Browser Detection
-function detectBrowser() {
-    const ua = navigator.userAgent.toLowerCase();
-    if (ua.indexOf('chrome') > -1) return 'Google Chrome';
-    if (ua.indexOf('firefox') > -1) return 'Mozilla Firefox';
-    if (ua.indexOf('safari') > -1) return 'Safari';
-    if (ua.indexOf('opr') > -1) return 'Opera';
-    if (ua.indexOf('trident') > -1) return 'Internet Explorer';
-    if (ua.indexOf('edge') > -1) return 'Microsoft Edge';
-    return 'Unknown Browser';
-}
-
-// Initialize Mixpanel after page load
-document.addEventListener('DOMContentLoaded', function() {
-    // Ensure Mixpanel is loaded before tracking
-    if (window.mixpanel) {
-        mixpanel.init("90ede36294e6b5ddf54e55c0cae7fc26", {
-            persistence: 'localStorage',
-            track_ip_address: true,
-            track_pageview: true,
-            loaded: function(mixpanel) {
-                mixpanel.track('Page View', {
-                    'Device Type': detectDeviceType(),
-                    'Browser': detectBrowser(),
-                    'Page URL': window.location.href
-                });
+(function(f, b) {
+    // Check if Mixpanel is already loaded to prevent duplicate initialization
+    if (!window.mixpanel) {
+        // Standard Mixpanel loading pattern
+        (function(a,b){
+            if(!b.__SV){
+                var c=window;
+                try{
+                    var d,m,h,
+                    i=c.location,
+                    k=i.hash;
+                    h=function(a,b){
+                        return(m=a.match(RegExp(b+"=([^&]*)"))) ? m[1] : null;
+                    };
+                    k&&h(k,"state")&&(b.__SV=1);
+                }catch(h){}
+                
+                c=document.createElement("script");
+                c.type="text/javascript";
+                c.async=!0;
+                c.src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+                d=document.getElementsByTagName("script")[0];
+                d.parentNode.insertBefore(c,d);
             }
-        });
+        })(document,window.mixpanel||[]);
+
+        window.mixpanel = window.mixpanel || [];
     }
-});
+
+    // Device Type Detection
+    function detectDeviceType() {
+        const ua = navigator.userAgent.toLowerCase();
+        if (/android/.test(ua)) return 'Android Mobile';
+        if (/iphone/.test(ua)) return 'iPhone';
+        if (/ipad/.test(ua)) return 'iPad';
+        if (/mobile/.test(ua)) return 'Mobile';
+        return 'Desktop';
+    }
+
+    // Browser Detection
+    function detectBrowser() {
+        const ua = navigator.userAgent.toLowerCase();
+        if (ua.indexOf('chrome') > -1) return 'Google Chrome';
+        if (ua.indexOf('firefox') > -1) return 'Mozilla Firefox';
+        if (ua.indexOf('safari') > -1) return 'Safari';
+        if (ua.indexOf('opr') > -1) return 'Opera';
+        if (ua.indexOf('trident') > -1) return 'Internet Explorer';
+        if (ua.indexOf('edge') > -1) return 'Microsoft Edge';
+        return 'Unknown Browser';
+    }
+
+    // Ensure safe Mixpanel initialization
+    function initMixpanel() {
+        const MIXPANEL_TOKEN = "90ede36294e6b5ddf54e55c0cae7fc26";
+
+        try {
+            mixpanel.init(MIXPANEL_TOKEN, {
+                persistence: 'localStorage',
+                track_ip_address: true,
+                track_pageview: true,
+                loaded: function(mixpanel) {
+                    // Track initial page view
+                    mixpanel.track('Page View', {
+                        'Device Type': detectDeviceType(),
+                        'Browser': detectBrowser(),
+                        'Page URL': window.location.href
+                    });
+                }
+            });
+        } catch (error) {
+            console.error('Mixpanel initialization failed:', error);
+        }
+    }
+
+    // Wait for Mixpanel library to load
+    function waitForMixpanel(callback, maxAttempts = 10) {
+        let attempts = 0;
+        const checkInterval = setInterval(() => {
+            if (window.mixpanel && window.mixpanel.init) {
+                clearInterval(checkInterval);
+                callback();
+            } else if (attempts++ >= maxAttempts) {
+                clearInterval(checkInterval);
+                console.error('Mixpanel failed to load');
+            }
+        }, 500);
+    }
+
+    // Add event listener for page load
+    document.addEventListener('DOMContentLoaded', function() {
+        waitForMixpanel(initMixpanel);
+    });
+})(document, window);
 </script>
 
     <style>
