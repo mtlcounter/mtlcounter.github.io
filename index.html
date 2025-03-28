@@ -8,10 +8,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋🏼</text></svg>">
     
-    <!-- Mixpanel Integration -->
-    <script type="text/javascript">
-        (function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);return d};a.people.toString=function(){return d+".people"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
-        for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(a,d){var b=new n(a,d);return b};function n(a,d){this.id=a;this.name=d;this[q]=[]}var k={};k[q]=k.get_group=function(a,b,c){return e(a,b,c)};b.get_group=function(a,d){return k.get_group(a,d)};e=function(a,d,c){c=c||{};var e=g._i[a]=g._i[a]||{};a!==q&&(b.get_group(a,d)||{}).set(c);return b.get_group(a,d)};b.init(e,f,c)}var q="mixpanel";window.mixpanel.init("90ede36294e6b5ddf54e55c0cae7fc26", {
+   <script type="text/javascript">
+(function(f,b){
+    if(!b.__SV){
+        var e,g,i,h;
+        window.mixpanel=b;
+        b._i=[];
+        b.init=function(e,f,c){
+            // Simplified initialization function
+            var a=b;
+            a._.push([e,f,c]);
+        };
+        b._=[];
+        b.init(e,f,c);
+    }
+})(document,window.mixpanel||[]);
+
+// Device Type Detection
+function detectDeviceType() {
+    const ua = navigator.userAgent.toLowerCase();
+    if (/android/.test(ua)) return 'Android Mobile';
+    if (/iphone/.test(ua)) return 'iPhone';
+    if (/ipad/.test(ua)) return 'iPad';
+    if (/mobile/.test(ua)) return 'Mobile';
+    return 'Desktop';
+}
+
+// Browser Detection
+function detectBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('chrome') > -1) return 'Google Chrome';
+    if (ua.indexOf('firefox') > -1) return 'Mozilla Firefox';
+    if (ua.indexOf('safari') > -1) return 'Safari';
+    if (ua.indexOf('opr') > -1) return 'Opera';
+    if (ua.indexOf('trident') > -1) return 'Internet Explorer';
+    if (ua.indexOf('edge') > -1) return 'Microsoft Edge';
+    return 'Unknown Browser';
+}
+
+// Initialize Mixpanel after page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Ensure Mixpanel is loaded before tracking
+    if (window.mixpanel) {
+        mixpanel.init("90ede36294e6b5ddf54e55c0cae7fc26", {
             persistence: 'localStorage',
             track_ip_address: true,
             track_pageview: true,
@@ -22,30 +61,10 @@
                     'Page URL': window.location.href
                 });
             }
-        });})(document,window.mixpanel||[]);
-
-        // Device Type Detection
-        function detectDeviceType() {
-            const ua = navigator.userAgent.toLowerCase();
-            if (/android/.test(ua)) return 'Android Mobile';
-            if (/iphone/.test(ua)) return 'iPhone';
-            if (/ipad/.test(ua)) return 'iPad';
-            if (/mobile/.test(ua)) return 'Mobile';
-            return 'Desktop';
-        }
-
-        // Browser Detection
-        function detectBrowser() {
-            const ua = navigator.userAgent.toLowerCase();
-            if (ua.indexOf('chrome') > -1) return 'Google Chrome';
-            if (ua.indexOf('firefox') > -1) return 'Mozilla Firefox';
-            if (ua.indexOf('safari') > -1) return 'Safari';
-            if (ua.indexOf('opr') > -1) return 'Opera';
-            if (ua.indexOf('trident') > -1) return 'Internet Explorer';
-            if (ua.indexOf('edge') > -1) return 'Microsoft Edge';
-            return 'Unknown Browser';
-        }
-    </script>
+        });
+    }
+});
+</script>
 
     <style>
         :root {
