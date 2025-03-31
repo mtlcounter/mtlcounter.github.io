@@ -255,16 +255,6 @@
 
 // Initialize Mixpanel with your project token
 mixpanel.init("90ede36294e6b5ddf54e55c0cae7fc26", {track_pageview: true});
-
-// Track page view
-document.addEventListener('DOMContentLoaded', function() {
-    mixpanel.track("Page View", {
-        "page": window.location.pathname,
-        "url": window.location.href,
-        "title": document.title,
-        "referrer": document.referrer
-    });
-});
 </script>
 </head>
 <body>
@@ -333,6 +323,20 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <script>
+        // Page load time tracking
+        let pageLoadTime = Date.now();
+        
+        // Helper function to detect browser
+        function getBrowserInfo() {
+            const userAgent = navigator.userAgent;
+            if (userAgent.includes('Firefox')) return 'Firefox';
+            if (userAgent.includes('Chrome')) return 'Chrome';
+            if (userAgent.includes('Safari')) return 'Safari';
+            if (userAgent.includes('Edge')) return 'Edge';
+            if (userAgent.includes('MSIE') || userAgent.includes('Trident/')) return 'Internet Explorer';
+            return 'Other';
+        }
+        
         function handleEmailClick(e) {
             e.preventDefault();
             const user = "web-hello";
@@ -349,8 +353,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Dark Mode Toggle
-        document.addEventListener('DOMContentLoaded', () => {
+        // Initialize tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get user's timezone for rough location estimation
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            
+            // Track page view with enhanced data
+            mixpanel.track("Page View", {
+                "page": window.location.pathname,
+                "url": window.location.href,
+                "title": document.title,
+                "referrer": document.referrer,
+                "timezone": timezone,
+                "language": navigator.language,
+                "viewport_width": window.innerWidth,
+                "viewport_height": window.innerHeight
+            });
+            
+            // Set more user properties
+            mixpanel.register({
+                "device_type": /Mobi|Android/i.test(navigator.userAgent) ? "mobile" : "desktop",
+                "browser": getBrowserInfo(),
+                "landing_time": new Date().toISOString()
+            });
+            
+            // Dark Mode Toggle
             const darkModeToggle = document.querySelector('.dark-mode-toggle');
             const body = document.body;
 
@@ -384,6 +411,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (typeof mixpanel !== 'undefined') {
                     mixpanel.track("LinkedIn Link Clicked");
                 }
+            });
+            
+            // Track company logo interactions
+            document.querySelectorAll('.company-logo').forEach(logo => {
+                logo.addEventListener('click', function() {
+                    const companyName = this.alt;
+                    mixpanel.track("Company Logo Clicked", {
+                        "company": companyName
+                    });
+                });
+                
+                // Track hover interactions
+                logo.addEventListener('mouseenter', function() {
+                    const companyName = this.alt;
+                    mixpanel.track("Company Logo Hover", {
+                        "company": companyName
+                    });
+                });
+            });
+        });
+        
+        // Track scroll depth
+        let maxScroll = 0;
+        
+        window.addEventListener('scroll', function() {
+            const scrollPercentage = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+            
+            if (scrollPercentage > maxScroll) {
+                maxScroll = scrollPercentage;
+                
+                // Only track at certain thresholds to avoid too many events
+                if (maxScroll === 25 || maxScroll === 50 || maxScroll === 75 || maxScroll === 100) {
+                    mixpanel.track("Scroll Depth", {
+                        "depth_percentage": maxScroll
+                    });
+                }
+            }
+        });
+        
+        // Track time on page
+        window.addEventListener('beforeunload', function() {
+            const timeSpent = Math.round((Date.now() - pageLoadTime) / 1000);
+            
+            mixpanel.track("Page Exit", {
+                "time_spent_seconds": timeSpent
             });
         });
     </script>
